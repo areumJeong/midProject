@@ -62,6 +62,11 @@ public class BoardFServiceImpl implements BoardFService {
 		boardFDao.updateLikeCount(fid, count);
 		
 	}
+	
+	@Override
+	   public List<BoardF> getBoardFListUsedMain() {
+	      return boardFDao.getBoardFListUsedMain();
+	   }
 
 
 }

@@ -169,18 +169,35 @@ public class BoardFController {
 		 */
 //		List<Menu> menuList = menuService.getMenuList(boardf.getTitle());
 //		model.addAttribute("menuList" , menuList);
-		Menu menu = menuService.getMenuByName(boardf.getTitle());
-		String[] name = menu.getFood().split(", ");
-		String[] price = menu.getPrice().split(", ");
-		List<Menu> menuList = new ArrayList<>();
-
-		for (int i = 0; i < price.length; i++) {
-			menuList.add(new Menu(name[i], price[i]));
-		}
-
-		model.addAttribute("menuList", menuList);
+		
+		// 나중에 살리기
+//		Menu menu = menuService.getMenuByName(boardf.getTitle());
+//		String[] name = menu.getFood().split(", ");
+//		String[] price = menu.getPrice().split(", ");
+//		List<Menu> menuList = new ArrayList<>();
+//
+//		for (int i = 0; i < price.length; i++) {
+//			menuList.add(new Menu(name[i], price[i]));
+//		}
+//
+//		model.addAttribute("menuList", menuList);
 		return "boardf/detail";
 	}
+	
+	@GetMapping("/main")
+    public String main(Model model) {   
+       List<BoardF> boardfList = new ArrayList<>();
+     
+       
+       boardfList = boardFService.getBoardFListUsedMain();
+       System.out.println(boardfList);
+       
+       
+          
+       model.addAttribute("boardfList", boardfList);
+
+       return "boardf/main";
+    }
 
 	// AJAX 처리
 	@GetMapping("/like/{fid}")
